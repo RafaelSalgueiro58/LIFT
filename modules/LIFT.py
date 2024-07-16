@@ -207,7 +207,8 @@ class LIFT:
             dI = (PSF-PSF_cap).flatten()
     
             C.append( xp.dot(dI*inv_R_n, dI) )  # check the convergence
-            if i > 0 and (criterion(i)<1e-5 or coefs_norm(A_ests[i]-A_ests[i-1])<10e-9):
+            # if i > 0 and (criterion(i)<1e-5 or coefs_norm(A_ests[i]-A_ests[i-1])<10e-9):
+            if i > 0 and (criterion(i) < 1e-6 or coefs_norm(A_ests[i] - A_ests[i - 1]) < 1e-12):
                 if verbous:
                     print('Criterion', criterion(i), 'is reached at iter.', i)
                 break
@@ -298,7 +299,7 @@ class LIFT:
                 return data
                 
         PSF_inp = check_backend(PSF_inp)
-        R_n     = check_backend(R_n)
+        # R_n     = check_backend(R_n)
         A_mean  = check_backend(A_mean)
         A_var   = check_backend(A_var)
         A_0     = check_backend(A_0)
@@ -360,7 +361,8 @@ class LIFT:
             dI = (PSF-PSF_cap).flatten()
     
             C.append( xp.dot(dI*inv_R_n, dI) )  # check the convergence
-            if i > 0 and (criterion(i)<1e-5 or coefs_norm(A_ests[i]-A_ests[i-1])<10e-9):
+            # if i > 0 and (criterion(i)<1e-5 or coefs_norm(A_ests[i]-A_ests[i-1])<10e-9):
+            if i > 0 and (criterion(i) < 1e-6 or coefs_norm(A_ests[i] - A_ests[i - 1]) < 1e-12):
                 if verbous:
                     print('Criterion', criterion(i), 'is reached at iter.', i)
                 break

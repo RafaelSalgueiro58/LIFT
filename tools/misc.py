@@ -142,7 +142,8 @@ def binning(inp, N, regime='sum'):
     if N == 1:
         return inp
     
-    xp  = cp.get_array_module(inp)
+    # xp  = cp.get_array_module(inp)
+    xp = np
     out = xp.stack(xp.split(xp.stack(xp.split(xp.atleast_3d(inp), inp.shape[0]//N, axis=0)), inp.shape[1]//N, axis=2))
     
     if    regime == 'max':  func = xp.max
